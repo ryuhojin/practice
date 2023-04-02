@@ -1,23 +1,12 @@
-import { data } from "@/libs/api";
-import { Inter } from "next/font/google";
-import { useEffect } from "react";
-const inter = Inter({ subsets: ["latin"] });
+import RootTemplate from "@/components/template/RootTemplate";
+import HomeContainer from "@/containers/home/HomeContainer";
 
-export default function Home({ data }: any) {
-  console.log(data);
+const Home = ({ data }: any) => {
   return (
-    <>
-      <main></main>
-    </>
+    <RootTemplate>
+      <HomeContainer />
+    </RootTemplate>
   );
-}
+};
 
-export async function getServerSideProps() {
-  const _result = await data.getRest(2014);
-
-  return {
-    props: {
-      data: _result.response || {},
-    },
-  };
-}
+export default Home;
