@@ -6,7 +6,7 @@
  * @github github.com/ryuhojin
  * @date 2023.04.04
  */
-class RegEasy {
+export default class RegEasy {
   private pattern: string;
 
   constructor() {
@@ -247,4 +247,3 @@ class RegEasy {
     }
   }
 }
-export default RegEasy;

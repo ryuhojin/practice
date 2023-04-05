@@ -7,7 +7,8 @@
   "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "test": "jest"
   },
   "author": "ryuhojin",
   "license": "MIT",
@@ -15,8 +16,11 @@
     "@rollup/plugin-commonjs": "^24.0.1",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-terser": "^0.4.0",
+    "@types/jest": "^29.5.0",
+    "jest": "^29.5.0",
     "rollup": "^3.20.2",
     "rollup-plugin-typescript2": "^0.34.1",
+    "ts-jest": "^29.1.0",
     "typescript": "^5.0.3"
   }
 }
