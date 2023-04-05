@@ -23,7 +23,7 @@ export default class RegEasy {
    * @returns this
    */
   start(): this {
-    this.pattern += "^";
+    this.pattern += `^`;
     return this;
   }
   /**
@@ -32,7 +32,7 @@ export default class RegEasy {
    * @returns this
    */
   end(): this {
-    this.pattern += "$";
+    this.pattern += `$`;
     return this;
   }
   /**
@@ -42,6 +42,15 @@ export default class RegEasy {
    */
   char(value: string): this {
     this.pattern += value;
+    return this;
+  }
+  /**
+   * @name special
+   * @description 특수문자를 패턴에 추가함.
+   * @returns this
+   */
+  special(): this {
+    this.pattern += `[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]`;
     return this;
   }
   /**
@@ -55,31 +64,31 @@ export default class RegEasy {
     return this;
   }
   /**
-   * @name noneOf
+   * @name nonOneOf
    * @description 배열 중 하나를 나타내지 않는 패턴
    * @param string[]
    * @returns this
    */
-  noneOf(values: string[]): this {
+  nonOneOf(values: string[]): this {
     this.pattern += `[^${values.join("")}]`;
     return this;
   }
   /**
-   * @name word
+   * @name text
    * @description 영어,한글을 포함하는 패턴
    * @returns this
    */
-  word(): this {
-    this.pattern += "\\w가-힣";
+  text(): this {
+    this.pattern += `\\w가-힣`;
     return this;
   }
   /**
-   * @name nonWord
+   * @name nonText
    * @description 영어,한글을 포함하지 않는 패턴
    * @returns this
    */
-  nonWord(): this {
-    this.pattern += "[^\\w가-힣]";
+  nonText(): this {
+    this.pattern += `[^\\w가-힣]`;
     return this;
   }
   /**
@@ -88,7 +97,7 @@ export default class RegEasy {
    * @returns this
    */
   number(): this {
-    this.pattern += "\\d";
+    this.pattern += `\\d`;
     return this;
   }
   /**
@@ -97,7 +106,7 @@ export default class RegEasy {
    * @returns this
    */
   nonNumber(): this {
-    this.pattern += "\\D";
+    this.pattern += `\\D`;
     return this;
   }
   /**
@@ -106,7 +115,7 @@ export default class RegEasy {
    * @returns this
    */
   space(): this {
-    this.pattern += "\\s";
+    this.pattern += `\\s`;
     return this;
   }
   /**
@@ -115,16 +124,7 @@ export default class RegEasy {
    * @returns this
    */
   nonSpace(): this {
-    this.pattern += "\\S";
-    return this;
-  }
-  /**
-   * @name exactly
-   * @description 해당문자가 정확히 count회 나타날 수있도록하는 패턴
-   * @returns this
-   */
-  exactly(count: number): this {
-    this.pattern += `{${count}}`;
+    this.pattern += `\\S`;
     return this;
   }
   /**
@@ -139,19 +139,12 @@ export default class RegEasy {
   /**
    * @name atLeast
    * @description 해당문자가 정확히 count회 이상날 수 있도록 하는 패턴
+   * 1. oneOrMore : +를 대체
+   * 2. zeroOrMore : * 를 대체
    * @returns this
    */
-  atLeast(count: number): this {
+  more(count: number): this {
     this.pattern += `{${count},}`;
-    return this;
-  }
-  /**
-   * @name zeroOrMore
-   * @description 해당 문자가 0회 이상 나타날 수 있도록 * 패턴
-   * @returns this
-   */
-  zeroOrMore(): this {
-    this.pattern += "*";
     return this;
   }
   /**
@@ -160,16 +153,7 @@ export default class RegEasy {
    * @returns this
    */
   zeroOrOne(): this {
-    this.pattern += "?";
-    return this;
-  }
-  /**
-   * @name oneOrMore
-   * @description 해당 문자가 1회 이상 나타날 수 있도록 + 패턴
-   * @returns this
-   */
-  oneOrMore(): this {
-    this.pattern += "+";
+    this.pattern += `?`;
     return this;
   }
   /**

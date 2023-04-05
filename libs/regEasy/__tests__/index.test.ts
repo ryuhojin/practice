@@ -2,5 +2,6 @@
 import RegEasy from "../src/index";
 
 test("Build Regex Phone Number", () => {
-  expect(new RegEasy().start().char("123123").build()+"").toBe("/^123123/");
+  expect(new RegEasy().start().char("123123").end().build()+"").toBe("/^123123$/");
 });
+
