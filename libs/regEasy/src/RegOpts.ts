@@ -3,4 +3,5 @@ export const RegOpts = {
   kor: "가-힣",
   num: "0-9",
   _: "_",
+  not: "^",
 };

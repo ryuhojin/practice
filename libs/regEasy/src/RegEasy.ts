@@ -49,8 +49,17 @@ export default class RegEasy {
    * @description 파라미터에 특정 옵션을 주거나 특정 문자를 주는 패턴
    * @returns this
    */
-  add(val: string): this {
+  char(val: string): this {
     this.pattern += val;
+    return this;
+  }
+  /**
+   * @name str
+   * @description 파라미터에 특정 옵션을 주거나 특정 문자를 주는 패턴
+   * @returns this
+   */
+  add(val: string): this {
+    this.pattern += `[${val}]`;
     return this;
   }
   /**
@@ -80,7 +89,14 @@ export default class RegEasy {
    * @returns this
    */
   more(count: number): this {
-    this.pattern += `{${count},}`;
+    if (count == 0) {
+      this.pattern += `*`;
+    } else if (count == 1) {
+      this.pattern += `+`;
+    } else {
+      this.pattern += `{${count},}`;
+    }
+
     return this;
   }
   /**
