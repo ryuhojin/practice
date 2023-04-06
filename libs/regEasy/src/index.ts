@@ -79,7 +79,7 @@ export default class RegEasy {
    * @returns this
    */
   text(): this {
-    this.pattern += `\\w가-힣`;
+    this.pattern += `[\\w가-힣]`;
     return this;
   }
   /**
@@ -107,6 +107,16 @@ export default class RegEasy {
    */
   nonNumber(): this {
     this.pattern += `\\D`;
+    return this;
+  }
+
+  /**
+   * @name both
+   * @description 숫자,문자를 포함하는 패턴
+   * @return this
+   */
+  both(): this {
+    this.pattern += `[\\w\\d가-힣]`;
     return this;
   }
   /**
@@ -161,7 +171,10 @@ export default class RegEasy {
    * @description 앞서 추가한 정규식들을 빌드하는 메소드
    * @returns this
    */
-  build(): RegExp {
+  build(): this {
+    return this;
+  }
+  toRegex(): RegExp {
     if (!this.pattern) {
       throw new Error("Please make the pattern first.");
     }
@@ -181,7 +194,7 @@ export default class RegEasy {
     if (!this.pattern) {
       throw new Error("Please build the pattern first.");
     }
-    if (!str || !replaceValue) {
+    if (str == null || replaceValue == null) {
       throw new Error("Please input the parameters.");
     }
     const regex = new RegExp(this.pattern, "g");
@@ -199,7 +212,7 @@ export default class RegEasy {
     if (!str) {
       throw new Error("Please input the parameters.");
     }
-    const regex = new RegExp(this.pattern, "g");
+    const regex = new RegExp(this.pattern);
     return str.match(regex);
   }
   /**
