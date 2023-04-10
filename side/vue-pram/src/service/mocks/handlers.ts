@@ -1,7 +1,4 @@
 import { rest } from "msw";
-import { mockWrite, mockRead } from "./resolvers/mockBokboot";
+import { loadApp } from "./resolvers/app";
 
-export const handlers = [
-  rest.post("/sourceCode", mockWrite),
-  rest.get("/sourceCode/1", mockRead),
-];
+export const handlers = [rest.get("/loadApp", loadApp)];
