@@ -1,7 +1,7 @@
 // VUE CORE
 import { createApp } from "vue";
 import App from "./App.vue";
-import router from "./router";
+import { addRoutes, router } from "./router";
 // STATE MANAGEMENT
 import { createPinia } from "pinia";
 import { VueQueryPlugin } from "@tanstack/vue-query";
@@ -21,11 +21,16 @@ const app = createApp(App).use(createPinia()).use(router).use(VueQueryPlugin);
 
 //3.CALL API AND LOAD APP
 get("/loadApp", {})
-  .then((res) => {
+  .then(async (res) => {
     if (res.status != 200) return alert("App is Loading Failed");
+
     const { setCore } = useCore();
     setCore(res.data);
-    app.mount("#app");
+
+    const isRoutes = await addRoutes([]);
+    if (isRoutes) {
+      app.mount("#app");
+    }
   })
   .catch((err) => {
     alert("App is Loading Failed");

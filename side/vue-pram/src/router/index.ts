@@ -1,4 +1,8 @@
-import { createRouter, createWebHistory } from "vue-router";
+import {
+  createRouter,
+  createWebHistory,
+  type RouteRecordRaw,
+} from "vue-router";
 import HomeView from "../views/HomeView.vue";
 
 const router = createRouter({
@@ -9,15 +13,20 @@ const router = createRouter({
       name: "home",
       component: HomeView,
     },
-    {
-      path: "/about",
-      name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import("../views/AboutView.vue"),
-    },
   ],
 });
 
-export default router;
+const addRoutes = async (routeItems: any) => {
+  return new Promise((resolve, reject) => {
+    try {
+      routeItems.forEach((value: RouteRecordRaw) => {
+        router.addRoute(value);
+      });
+      resolve(true);
+    } catch {
+      reject("Router Add Failed");
+    }
+  });
+};
+
+export { router, addRoutes };
