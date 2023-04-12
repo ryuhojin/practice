@@ -9,7 +9,7 @@ import { VueQueryPlugin } from "@tanstack/vue-query";
 import { get } from "./service";
 // CSS
 import "./assets/main.css";
-
+import { useCore } from "./stores/pinia/core";
 //1.INIT MOCK API
 if (process.env.NODE_ENV === "development") {
   const { worker } = await import("./service/mocks/browser");
@@ -23,6 +23,8 @@ const app = createApp(App).use(createPinia()).use(router).use(VueQueryPlugin);
 get("/loadApp", {})
   .then((res) => {
     if (res.status != 200) return alert("App is Loading Failed");
+    const { setCore } = useCore();
+    setCore(res.data);
     app.mount("#app");
   })
   .catch((err) => {

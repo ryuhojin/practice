@@ -11,5 +11,6 @@ export const useAuth = defineStore("auth", () => {
 
   const getNAME = computed(() => user.NAME);
   const getROLE = computed(() => user.ROLE);
+
   return { user, getNAME, getROLE };
 });
