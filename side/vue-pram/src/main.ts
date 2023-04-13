@@ -10,6 +10,7 @@ import { get } from "./service";
 // CSS
 import "./assets/main.css";
 import { useCore } from "./stores/pinia/core";
+
 //1.INIT MOCK API
 if (process.env.NODE_ENV === "development") {
   const { worker } = await import("./service/mocks/browser");

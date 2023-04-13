@@ -1,4 +1,4 @@
-import { menus, codes } from "./data/core";
+import { menus, codes } from "../data/core";
 import type {
   DefaultBodyType,
   PathParams,

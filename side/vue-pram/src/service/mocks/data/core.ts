@@ -29,6 +29,12 @@ export const menus = [
     parentId: 2,
     id: 5,
   },
+  {
+    name: "apt",
+    path: "apt",
+    parentId: 6,
+    id: 6,
+  },
 ];
 
 export const codes = [];
