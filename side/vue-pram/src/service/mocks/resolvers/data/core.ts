@@ -1,21 +1,33 @@
 export const menus = [
   {
-    name: "HOME",
-    path: "/",
-    parentId: 0,
-    id: 0,
-  },
-  {
-    name: "COMPOENENTS",
-    path: "/componenets",
+    name: "sample",
+    path: "sample",
     parentId: 1,
     id: 1,
   },
   {
-    name: "FORM",
-    path: "/form",
+    name: "form",
+    path: "form",
     parentId: 1,
     id: 2,
+  },
+  {
+    name: "grid",
+    path: "grid",
+    parentId: 1,
+    id: 3,
+  },
+  {
+    name: "chart",
+    path: "chart",
+    parentId: 1,
+    id: 4,
+  },
+  {
+    name: "input",
+    path: "input",
+    parentId: 2,
+    id: 5,
   },
 ];
 

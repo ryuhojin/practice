@@ -23,11 +23,12 @@ const app = createApp(App).use(createPinia()).use(router).use(VueQueryPlugin);
 get("/loadApp", {})
   .then(async (res) => {
     if (res.status != 200) return alert("App is Loading Failed");
+    const result: any = res.data;
 
     const { setCore } = useCore();
-    setCore(res.data);
+    setCore(result);
 
-    const isRoutes = await addRoutes([]);
+    const isRoutes = await addRoutes(result.menus);
     if (isRoutes) {
       app.mount("#app");
     }

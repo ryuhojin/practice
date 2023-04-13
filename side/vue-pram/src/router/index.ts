@@ -16,11 +16,38 @@ const router = createRouter({
   ],
 });
 
+const generateTree = (
+  menus: any[],
+  parentId: number,
+  processedIds: Set<number> = new Set()
+) => {
+  const result: any = [];
+  for (let menu of menus) {
+    if (menu.parentId === parentId && !processedIds.has(menu.id)) {
+      processedIds.add(menu.id);
+      const children = generateTree(menus, menu.id, processedIds);
+      if (children.length > 0) {
+        menu.children = children;
+      }
+      result.push(menu);
+    }
+  }
+  return result;
+};
+
 const addRoutes = async (routeItems: any) => {
   return new Promise((resolve, reject) => {
+    const tree = generateTree(routeItems, 1);
+    console.log(tree);
+    debugger;
     try {
-      routeItems.forEach((value: RouteRecordRaw) => {
-        router.addRoute(value);
+      tree.forEach((value: any) => {
+        //root
+        // if (value.parentId == value.id) {
+        //   router.addRoute(value);
+        // } else {
+        //   router.addRoute(value);
+        // }
       });
       resolve(true);
     } catch {
