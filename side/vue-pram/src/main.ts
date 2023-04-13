@@ -1,7 +1,7 @@
 // VUE CORE
 import { createApp } from "vue";
 import App from "./App.vue";
-import { addRoutes, router } from "./router";
+import { setRoutes, router } from "./router";
 // STATE MANAGEMENT
 import { createPinia } from "pinia";
 import { VueQueryPlugin } from "@tanstack/vue-query";
@@ -28,7 +28,7 @@ get("/loadApp", {})
     const { setCore } = useCore();
     setCore(result);
 
-    const isRoutes = await addRoutes(result.menus);
+    const isRoutes = await setRoutes(result.menus);
     if (isRoutes) {
       app.mount("#app");
     }
